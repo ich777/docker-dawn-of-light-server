@@ -4,7 +4,7 @@ LABEL maintainer="admin@minenet.at"
 
 RUN dpkg --add-architecture i386 && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends curl unzip && \
+	apt-get -y install --no-install-recommends curl unzip screen && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/dol"
@@ -22,6 +22,7 @@ RUN mkdir $DATA_DIR && \
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
+COPY /config/serverconfig.xml /tmp/serverconfig.xml
 
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
