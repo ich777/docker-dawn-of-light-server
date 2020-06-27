@@ -20,8 +20,9 @@ chown -R ${UID}:${GID} /opt/scripts
 chown -R ${UID}:${GID} ${DATA_DIR}
 
 term_handler() {
-	kill -SIGTERM "$killpid"
-	wait "$killpid" -f 2>/dev/null
+	screenpid="$(su $USER -c "screen -list | grep "Detached" | grep "DoL" | cut -d '.' -f1")"
+	su $USER -c "screen -S DoL -X stuff 'exit^M'" >/dev/null
+	tail --pid="${screenpid//[[:blank:]]/}" -f 2>/dev/null
 	exit 143;
 }
 
