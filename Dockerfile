@@ -4,7 +4,7 @@ LABEL maintainer="admin@minenet.at"
 
 RUN dpkg --add-architecture i386 && \
 	apt-get update && \
-	apt-get -y install --no-install-recommends mariadb-server && \
+	apt-get -y install --no-install-recommends && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/dol"
