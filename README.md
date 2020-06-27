@@ -20,7 +20,7 @@ Update Notice: Simply restart the container if a newer version of the game is av
 | DATA_PERM | Data permissions for main storage folder | 770 |
 
 # Run example
-
+```
 docker run --name Dawn-of-Light-Server -d \
     -p 10300:10300 \
     -p 10400:10400 \
@@ -32,6 +32,7 @@ docker run --name Dawn-of-Light-Server -d \
     --volume /mnt/user/appdata/dawn-of-light:/dol \
     --restart=unless-stopped \
     ich777/dawn-of-light-server:latest
+```
 
 This Docker was mainly created for the use with Unraid, if you don’t use Unraid you should definitely try it!
 
