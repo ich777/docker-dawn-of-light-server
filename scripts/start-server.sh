@@ -53,6 +53,12 @@ if [ ! -f "${DATA_DIR}/config/serverconfig.xml" ]; then
     cp /tmp/serverconfig.xml ${DATA_DIR}/config/serverconfig.xml
 fi
 chmod -R ${DATA_PERM} ${DATA_DIR}
+echo "---Checking for old logs---"
+find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
+screen -wipe 2&>/dev/null
 
 cd ${DATA_DIR}
-mono ${DATA_DIR}/DOLServer.exe ${GAME_PARAMS}
+screen -S DoL -L -Logfile ${DATA_DIR}/masterLog.0 -d -m mono ${DATA_DIR}/DOLServer.exe ${GAME_PARAMS}
+sleep 2
+screen -S watchdog -d -m /opt/scripts/start-watchdog.sh
+tail -f ${DATA_DIR}/masterLog.0
