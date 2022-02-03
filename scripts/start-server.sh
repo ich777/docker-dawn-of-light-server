@@ -59,6 +59,16 @@ echo "---Checking for old logs---"
 find ${DATA_DIR} -name "masterLog.*" -exec rm -f {} \;
 screen -wipe 2&>/dev/null
 
+echo "+-------------------------------------------------------------"
+echo "|"
+echo "| This containeris deprecated and is no longer"
+echo "| actively maintained or further developed!"
+echo "|"
+echo "|  Container will start in 60 seconds!"
+echo "|"
+echo "+-------------------------------------------------------------"
+sleep 60
+
 cd ${DATA_DIR}
 screen -S DoL -L -Logfile ${DATA_DIR}/masterLog.0 -d -m mono ${DATA_DIR}/DOLServer.exe ${GAME_PARAMS}
 sleep 2
