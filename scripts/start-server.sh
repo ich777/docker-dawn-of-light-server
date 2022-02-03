@@ -6,12 +6,13 @@ echo "---Version Check---"
 if [ ! -f "${DATA_DIR}/DOLServer.exe" ]; then
    	echo "---Dawn of Light Server not found, downloading!---"
    	cd ${DATA_DIR}
-   	if wget -q -nc --show-progress --progress=bar:force:noscroll -O DoL-$LAT_V.zip "https://github.com/Dawn-of-Light/DOLSharp/releases/download/$LAT_V/DOLServer_linux_net45_Release.zip" ; then
+   	if wget -q -nc --show-progress --progress=bar:force:noscroll -O DoL-$LAT_V.zip "https://github.com/Dawn-of-Light/DOLSharp/releases/download/$LAT_V/DOLServer_net45_Release.zip" ; then
 		echo "---Successfully downloaded Dawn of Light Server v$LAT_V---"
 	else
 		echo "-----------------------------------------------------------------------------------------------------"
 		echo "------------Can't download Dawn of Light Server v$LAT_V, putting server into sleep mode-----------"
 		echo "-----------------------------------------------------------------------------------------------------"
+        sleep infinity
 	fi
     unzip -q ${DATA_DIR}/DoL-$LAT_V.zip
     rm ${DATA_DIR}/DoL-$LAT_V.zip
@@ -25,12 +26,13 @@ elif [ "$LAT_V" != "$CUR_V" ]; then
     cp -R ${DATA_DIR}/scripts ${DATA_DIR}/userbackup/
     cp ${DATA_DIR}/dol.sqlite* ${DATA_DIR}/userbackup/
     find . -maxdepth 1 -not -name 'userbackup' -print0 | xargs -0 -I {} rm -R {} 2&>/dev/null
-    if wget -q -nc --show-progress --progress=bar:force:noscroll -O DoL-$LAT_V.zip "https://github.com/Dawn-of-Light/DOLSharp/releases/download/$LAT_V/DOLServer_linux_net45_Release.zip" ; then
+    if wget -q -nc --show-progress --progress=bar:force:noscroll -O DoL-$LAT_V.zip "https://github.com/Dawn-of-Light/DOLSharp/releases/download/$LAT_V/DOLServer_net45_Release.zip" ; then
 		echo "---Successfully downloaded Dawn of Light Server v$LAT_V---"
 	else
 		echo "-----------------------------------------------------------------------------------------------------"
 		echo "------------Can't download Dawn of Light Server v$LAT_V, putting server into sleep mode-----------"
 		echo "-----------------------------------------------------------------------------------------------------"
+        sleep infinity
 	fi
     unzip -q ${DATA_DIR}/DoL-$LAT_V.zip
     rm ${DATA_DIR}/DoL-$LAT_V.zip
